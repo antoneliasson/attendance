@@ -8,12 +8,12 @@ public class Person {
     public String email;
     public String gender;
     public String membership;
-    public boolean hasPaid;
-    public boolean identificationChecked;
+    public String payment;
+    public String identificationChecked;
 
     @Override
     public String toString() {
-        return "Person{" + "id=" + id + ", timestamp=" + timestamp + ", name=" + name + ", phone=" + phone + ", email=" + email + ", gender=" + gender + ", membership=" + membership + ", hasPaid=" + hasPaid + ", identificationChecked=" + identificationChecked + '}';
+        return "Person{" + "id=" + id + ", timestamp=" + timestamp + ", name=" + name + ", phone=" + phone + ", email=" + email + ", gender=" + gender + ", membership=" + membership + ", payment=" + payment + ", identificationChecked=" + identificationChecked + '}';
     }
     
 }
