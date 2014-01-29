@@ -5,8 +5,10 @@ import se.antoneliasson.attendance.models.Person;
 import se.antoneliasson.attendance.models.Registry;
 
 public class PersonTableModel extends AbstractTableModel {
+
     private final Registry registry;
-    
+    private final String[] columnNames = {"Tidsstämpel", "Namn", "Telefonnummer", "E-postadress", "Kön", "Medlemstyp", "Betalningsdatum", "Leg kontrollerat"};
+
     public PersonTableModel(Registry registry) {
         this.registry = registry;
     }
@@ -46,15 +48,14 @@ public class PersonTableModel extends AbstractTableModel {
                 return null;
         }
     }
-    
+
 //    @Override
 //    public Class getColumnClass(int c) {
 //        return getValueAt(0, c).getClass();
 //    }
-
-//    @Override
-//    public String getColumnName(int column) {
-//        return null;
-//    }
     
+    @Override
+    public String getColumnName(int column) {
+        return columnNames[column];
+    }
 }
