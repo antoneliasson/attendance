@@ -1,5 +1,6 @@
 package se.antoneliasson.attendance.controllers;
 
+import java.io.File;
 import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +17,8 @@ import se.antoneliasson.attendance.models.Registry;
     Import instance;
  
     @Before public void setUp() throws Exception {
-        System.setProperty(".level", "debug");
+        new File("test.db").delete();
+        
         Database db = new Database("test.db");
         Registry registry = new Registry(db);
         instance = new Import(registry);
