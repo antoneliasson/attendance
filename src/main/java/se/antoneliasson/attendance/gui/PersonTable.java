@@ -1,6 +1,7 @@
 package se.antoneliasson.attendance.gui;
 
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -12,6 +13,7 @@ public class PersonTable extends JPanel {
     private final Logger log;
     
     public PersonTable(TableModel tableModel) {
+        super(new GridLayout(1, 0));
         log = LogManager.getLogger();
         log.trace("PersonTable constructor");
         
