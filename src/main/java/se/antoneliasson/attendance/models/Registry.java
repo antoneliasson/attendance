@@ -112,7 +112,7 @@ public class Registry {
             assert p != null;
             matches.add(p);
         }
-        log.debug("Found {} matching people in registry", matches.size());
+        log.debug("Found {} matching person(s)", matches.size());
         return matches;
     }
     
