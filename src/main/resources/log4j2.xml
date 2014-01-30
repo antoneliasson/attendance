@@ -2,11 +2,16 @@
 <Configuration status="WARN">
   <Appenders>
     <Console name="Console" target="SYSTEM_OUT">
+      <ThresholdFilter level="INFO" />
       <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
     </Console>
+    <File append="false" fileName="logs/debug.log" name="File">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </File>
   </Appenders>
   <Loggers>
-    <Root level="INFO">
+    <Root level="DEBUG">
+      <AppenderRef ref="File"/>
       <AppenderRef ref="Console"/>
     </Root>
   </Loggers>
