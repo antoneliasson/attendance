@@ -80,4 +80,8 @@ public class PersonTableModel extends AbstractTableModel implements Observer {
         LogManager.getLogger().debug("Filter changed to '{}'", filter);
         filter(filter);
     }
+    
+    public Person get(int row) {
+        return persons.get(row);
+    }
 }
