@@ -14,10 +14,8 @@ public class Registry {
     private static final String tablename = "person";
     
     public Registry(Database db) {
-        log = LogManager.getLogger();
+        this.log = LogManager.getLogger();
         this.db = db;
-        // This will likely change to a Map<ID, Person> in the future, but right
-        // now solid indices are needed for the TableModel.
         this.persons = new HashMap<>();
         
         loadFromDb();
