@@ -1,6 +1,7 @@
 package se.antoneliasson.attendance.models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.logging.log4j.LogManager;
@@ -9,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 public class Registry {
     private final Logger log;
     private final Database db;
-    private final List<Person> persons;
+    private final Map<Integer, Person> persons;
     private static final String tablename = "person";
     
     public Registry(Database db) {
@@ -17,7 +18,7 @@ public class Registry {
         this.db = db;
         // This will likely change to a Map<ID, Person> in the future, but right
         // now solid indices are needed for the TableModel.
-        this.persons = new ArrayList<>();
+        this.persons = new HashMap<>();
         
         loadFromDb();
     }
@@ -85,14 +86,17 @@ public class Registry {
         Person p = makePerson(fields);
         p.id = id;
 
-        persons.add(p);
+        persons.put(id, p);
         log.debug("Inserted new person into the registry: {}", p);
     }
     
     private void loadFromDb() {
         List<Person> result = db.getAllPersons();
         log.info("Loaded {} people from database", result.size());
-        persons.addAll(result);
+        
+        for (Person p : result) {
+            persons.put(p.id, p);
+        }
     }
     
     /**
@@ -108,21 +112,11 @@ public class Registry {
         List<Integer> ids = db.search(query, new String[] {filter + "%"});
         List<Person> matches = new ArrayList<>();
         for (int id : ids) {
-            Person p = findPersonById(id);
+            Person p = persons.get(id);
             assert p != null;
             matches.add(p);
         }
         log.debug("Found {} matching person(s)", matches.size());
         return matches;
-    }
-    
-    private Person findPersonById(int id) {
-        // Pls. Hash table?
-        for (Person p : persons) {
-            if (p.id == id) {
-                return p;
-            }
-        }
-        return null;
     }
 }
