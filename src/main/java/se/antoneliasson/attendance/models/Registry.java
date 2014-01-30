@@ -38,14 +38,6 @@ public class Registry {
             +")", tablename);
     }
     
-    public int size() {
-        return persons.size();
-    }
-    
-    public Person get(int index) {
-        return persons.get(index);
-    }
-    
     /**
      * Updates an existing person with new data.
      * 

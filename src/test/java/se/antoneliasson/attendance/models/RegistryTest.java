@@ -52,35 +52,6 @@ public class RegistryTest {
     }
 
     /**
-     * Test of size method, of class Registry.
-     */
-    @Ignore @Test
-    public void testSize() {
-        System.out.println("size");
-        Registry instance = null;
-        int expResult = 0;
-        int result = instance.size();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of get method, of class Registry.
-     */
-    @Ignore @Test
-    public void testGet() {
-        System.out.println("get");
-        int index = 0;
-        Registry instance = null;
-        Person expResult = null;
-        Person result = instance.get(index);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of update method, of class Registry.
      */
     @Ignore @Test
