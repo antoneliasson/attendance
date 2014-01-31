@@ -2,6 +2,7 @@ package se.antoneliasson.attendance.models;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Person {
     private static final String tablename = "person";
@@ -47,6 +48,32 @@ public class Person {
     @Override
     public String toString() {
         return "Person{" + "id=" + getId() + ", timestamp=" + getTimestamp() + ", name=" + getName() + ", phone=" + getPhone() + ", email=" + getEmail() + ", gender=" + getGender() + ", membership=" + getMembership() + ", payment=" + getPayment() + ", identificationChecked=" + getIdentificationChecked() + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.db);
+        hash = 53 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Person other = (Person) obj;
+        if (!Objects.equals(this.db, other.db)) {
+            return false;
+        }
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
     }
 
     public int getId() {
