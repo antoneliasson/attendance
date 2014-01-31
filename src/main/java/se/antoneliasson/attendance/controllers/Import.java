@@ -8,15 +8,15 @@ import java.util.HashMap;
 import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import se.antoneliasson.attendance.models.Registry;
+import se.antoneliasson.attendance.models.Database;
 
 public class Import {
     private final Logger log;
-    private final Registry registry;
+    private final Database db;
     
-    public Import(Registry registry) {
+    public Import(Database db) {
         log = LogManager.getLogger();
-        this.registry = registry;
+        this.db = db;
     }
     
     public void simpleImport(String filename) {
@@ -26,7 +26,7 @@ public class Import {
             log.debug("Discarding header: {}", Arrays.toString(line));
             
             while( (line = reader.readNext()) != null ) {
-                registry.insert(map(line));
+                db.insertPerson(map(line));
             }
         } catch (IOException ioe) {
             log.error("Failed to read CSV file", ioe);

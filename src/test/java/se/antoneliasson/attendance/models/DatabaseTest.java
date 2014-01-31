@@ -14,10 +14,10 @@ import org.junit.Ignore;
  *
  * @author anton
  */
-public class RegistryTest {
-    Registry registry;
+public class DatabaseTest {
+    private Database instance;
     
-    public RegistryTest() {
+    public DatabaseTest() {
     }
     
     @BeforeClass
@@ -30,38 +30,11 @@ public class RegistryTest {
     
     @Before
     public void setUp() throws ClassNotFoundException {
-        Database db = new Database("example.db");
-        registry = new Registry(db);
+        instance = new Database("example.db");
     }
     
     @After
     public void tearDown() {
-    }
-
-    /**
-     * Test of getSchema method, of class Registry.
-     */
-    @Ignore @Test
-    public void testGetSchema() {
-        System.out.println("getSchema");
-        String expResult = "";
-        String result = Registry.getSchema();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of update method, of class Registry.
-     */
-    @Ignore @Test
-    public void testUpdate() {
-        System.out.println("update");
-        Person p = null;
-        Registry instance = null;
-        instance.update(p);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -71,8 +44,7 @@ public class RegistryTest {
     public void testInsert() {
         System.out.println("insert");
         Map<String, String> fields = null;
-        Registry instance = null;
-        instance.insert(fields);
+        instance.insertPerson(fields);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -84,7 +56,7 @@ public class RegistryTest {
     public void testFind() {
         System.out.println("find");
         String filter = "h";
-        List<Person> result = registry.find(filter);
+        List<Person> result = instance.find(filter);
         assertEquals(2, result.size());
     }
     

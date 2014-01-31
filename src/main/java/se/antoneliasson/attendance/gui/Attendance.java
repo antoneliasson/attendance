@@ -7,16 +7,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
-import se.antoneliasson.attendance.models.Registry;
+import se.antoneliasson.attendance.models.Database;
 
 public class Attendance extends JFrame {
     
-    public Attendance(Registry registry) {
+    public Attendance(Database db) {
         super("Attendance");
         
         setLayout(new BorderLayout());
         
-        PersonTableModel tableModel = new PersonTableModel(registry);
+        PersonTableModel tableModel = new PersonTableModel(db);
         PersonTable personTable = new PersonTable(tableModel);
         add(personTable);
         

@@ -6,17 +6,17 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.table.AbstractTableModel;
 import org.apache.logging.log4j.LogManager;
+import se.antoneliasson.attendance.models.Database;
 import se.antoneliasson.attendance.models.Person;
-import se.antoneliasson.attendance.models.Registry;
 
 public class PersonTableModel extends AbstractTableModel implements Observer {
 
-    private final Registry registry;
+    private final Database db;
     private final List<Person> persons;
     private final String[] columnNames = {"Tidsstämpel", "Namn", "Telefonnummer", "E-postadress", "Kön", "Medlemstyp", "Betalningsdatum", "Leg kontrollerat"};
 
-    public PersonTableModel(Registry registry) {
-        this.registry = registry;
+    public PersonTableModel(Database db) {
+        this.db = db;
         this.persons = new ArrayList<>();
         
         filter("");
@@ -24,7 +24,7 @@ public class PersonTableModel extends AbstractTableModel implements Observer {
     
     private void filter(String filter) {
         persons.clear();
-        persons.addAll(registry.find(filter));
+        persons.addAll(db.find(filter));
         fireTableDataChanged(); // Efficiency? What efficiency?
     }
 
@@ -43,21 +43,21 @@ public class PersonTableModel extends AbstractTableModel implements Observer {
         Person p = persons.get(row);
         switch (column) {
             case 0:
-                return p.timestamp;
+                return p.getTimestamp();
             case 1:
-                return p.name;
+                return p.getName();
             case 2:
-                return p.phone;
+                return p.getPhone();
             case 3:
-                return p.email;
+                return p.getEmail();
             case 4:
-                return p.gender;
+                return p.getGender();
             case 5:
-                return p.membership;
+                return p.getMembership();
             case 6:
-                return p.payment;
+                return p.getPayment();
             case 7:
-                return p.identificationChecked;
+                return p.getIdentificationChecked();
             default:
                 assert false;
                 return null;

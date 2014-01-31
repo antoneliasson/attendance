@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -33,7 +35,7 @@ public class Database {
     private void initTables() throws SQLException {
         log.debug("Initialising tables");
         Statement statement = connection.createStatement();
-        statement.executeUpdate(Registry.getSchema());
+        statement.executeUpdate(Person.getSchema());
     }
     
     /**
@@ -72,58 +74,79 @@ public class Database {
         return 0;
     }
     
+    
+    /**
+     * Inserts a new Person into the registry.
+     * 
+     * @param fields 
+     */
+    public int insertPerson(Map<String, String> fields) {
+        final String tablename="person";
+        StringBuilder query = new StringBuilder();
+        query.append("INSERT INTO ");
+        query.append(tablename);
+        query.append(" (timestamp, name, phone, email, gender, membership) VALUES (?, ?, ?, ?, ?, ?)");
+        
+        String[] values = {fields.get("timestamp"), fields.get("name"), fields.get("phone"),
+            fields.get("email"), fields.get("gender"), fields.get("membership")};
+        int id = insert(tablename, query.toString(), values);
+
+        log.debug("Inserted new person with id {} into the database", id);
+        return id;
+    }
+    
     /***
      * Typically a "SELECT id FROM tablename WHERE x LIKE ?" combined with a
      * [filter%] argument. Currently basically everything is hardcoded.
+     * TODO: correct.
      * @param query
      * @param values
-     * @return 
+     * @return
      */
-    public List<Integer> search(String query, String[] values) {
+    private List<Person> search(String query, String[] values) {
         log.debug("Query: {}", query);
         log.debug("Values: {}", Arrays.toString(values));
-        List<Integer> ids = new ArrayList<>();
+        List<Person> result = new ArrayList<>();
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             for (int i = 0; i < values.length; i++) {
                 stmt.setString(i+1, values[i]);
             }
             ResultSet res = stmt.executeQuery();
             while (res.next()) {
-                ids.add(res.getInt("id"));
+                result.add(new Person(this, res.getInt("id")));
             }
         } catch (SQLException ex) {
             log.fatal(ex);
             System.exit(1);
         }
-        log.debug("Found matching ID's: {}", ids);
-        return ids;
+        log.debug("Found {} matching person(s)", result.size());
+        return result;
     }
     
     /**
-     * Yes, this is a terrible workaround.
+     * Searches the database for Person's filtered by name.
      * 
+     * TODO: @param filter whitespace separated words to match the Persons' names for
+     * @param filter string to match against the beginning of Persons' names
      * @return 
      */
-    public List<Person> getAllPersons() {
-        List<Person> persons = new ArrayList<>();
-        try (Statement stmt = connection.createStatement()) {
-            ResultSet res = stmt.executeQuery("SELECT * FROM person");
-            while (res.next()) {
-                Person p = new Person();
-                p.id = res.getInt("id");
-                p.timestamp = res.getString("timestamp");
-                p.name = res.getString("name");
-                p.phone = res.getString("phone");
-                p.email = res.getString("email");
-                p.gender = res.getString("gender");
-                p.membership = res.getString("membership");
-                
-                persons.add(p);
-            }
+    public List<Person> find(String filter) {
+        log.debug("Searching for people using filter '{}'", filter);
+        String query = "SELECT id FROM person WHERE name LIKE ?";
+        List<Person> result = search(query, new String[] {filter + "%"});
+        return result;
+    }
+    
+    String getString(String tablename, int id, String field) {
+        String query = String.format("SELECT %s from %s WHERE id = ?", field, tablename);
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            ResultSet result = stmt.executeQuery();
+            return result.getString(1);
         } catch (SQLException ex) {
-            log.fatal(ex);
-            System.exit(1);
+            log.error(ex);
         }
-        return persons;
+        assert false;
+        return null;
     }
 }

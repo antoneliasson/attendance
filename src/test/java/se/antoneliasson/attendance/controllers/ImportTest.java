@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import se.antoneliasson.attendance.models.Database;
-import se.antoneliasson.attendance.models.Registry;
 
 /**
  *
@@ -20,8 +19,7 @@ import se.antoneliasson.attendance.models.Registry;
         new File("test.db").delete();
         
         Database db = new Database("test.db");
-        Registry registry = new Registry(db);
-        instance = new Import(registry);
+        instance = new Import(db);
     }
     
     /**
