@@ -48,7 +48,7 @@ public class Database {
      * @param values array of values to populate query with
      * @return primary key of inserted record
      */
-    public int insert(String tablename, String query, String[] values) {
+    private int insert(String tablename, String query, String[] values) {
         log.debug("Query: {}", query);
         log.debug("Values: {}", Arrays.toString(values));
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
@@ -79,6 +79,7 @@ public class Database {
      * Inserts a new Person into the registry.
      * 
      * @param fields 
+     * @return  
      */
     public int insertPerson(Map<String, String> fields) {
         final String tablename="person";
@@ -137,7 +138,7 @@ public class Database {
         return result;
     }
     
-    String getString(String tablename, int id, String field) {
+    public String getString(String tablename, int id, String field) {
         String query = String.format("SELECT %s from %s WHERE id = ?", field, tablename);
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, id);

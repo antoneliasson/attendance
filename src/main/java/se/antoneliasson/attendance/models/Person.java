@@ -40,7 +40,7 @@ public class Person {
             +")", tablename);
     }
 
-    Person(Database db, int id) {
+    public Person(Database db, int id) {
         this.id = id;
         this.db = db;
     }
