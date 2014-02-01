@@ -41,6 +41,7 @@ public class Import {
         dbFields.put("email", csvFields[3]);
         dbFields.put("gender", csvFields[4]);
         dbFields.put("membership", csvFields[5]);
+        dbFields.put("payment", csvFields[6]);
         return dbFields;
     }
 }

@@ -87,10 +87,10 @@ public class Database {
         StringBuilder query = new StringBuilder();
         query.append("INSERT INTO ");
         query.append(tablename);
-        query.append(" (timestamp, name, phone, email, gender, membership) VALUES (?, ?, ?, ?, ?, ?)");
+        query.append(" (timestamp, name, phone, email, gender, membership, payment, identification_checked) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         
         String[] values = {fields.get("timestamp"), fields.get("name"), fields.get("phone"),
-            fields.get("email"), fields.get("gender"), fields.get("membership")};
+            fields.get("email"), fields.get("gender"), fields.get("membership"), fields.get("payment"), fields.get("identification_checked")};
         int id = insert(tablename, query.toString(), values);
 
         log.debug("Inserted new person with id {} into the database", id);
