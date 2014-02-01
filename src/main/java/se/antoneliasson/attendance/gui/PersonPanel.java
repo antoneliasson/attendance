@@ -48,18 +48,33 @@ public class PersonPanel extends JPanel implements ActionListener {
     }
 
     public void refresh(Person p) {
-        log.debug("Refreshing person panel. New person: {}", p.getId());
+        // This might cause data loss if I ever swap the boxes' listeners from
+        // ActionListeners to ItemListeners. Better cause a NullPointerException
+        // instead:
         person = p;
-        personLabel.setText(p.getName());
-        for (int i = 0; i < boxes.size(); i++) {
-            JCheckBox box = boxes.get(i);
-            Occasion o = occasions.get(i);
-            box.setEnabled(true);
-            boolean participates = p.getParticipation(o);
-            box.setSelected(participates);
+        
+        if (p == null) {
+            log.debug("Disabling controls");
+            personLabel.setText("");
+            for (JCheckBox box : boxes) {
+                box.setEnabled(false);
+                box.setSelected(false);
+            }
+            identificationChecked.setEnabled(false);
+            identificationChecked.setSelected(false);
+        } else {
+            log.debug("Refreshing person panel. New person: {}", p.getId());
+            personLabel.setText(p.getName());
+            for (int i = 0; i < boxes.size(); i++) {
+                JCheckBox box = boxes.get(i);
+                Occasion o = occasions.get(i);
+                box.setEnabled(true);
+                boolean participates = p.getParticipation(o);
+                box.setSelected(participates);
+            }
+            identificationChecked.setEnabled(true);
+            identificationChecked.setSelected(p.getIdentificationChecked());
         }
-        identificationChecked.setEnabled(true);
-        identificationChecked.setSelected(p.getIdentificationChecked());
     }
 
     @Override
