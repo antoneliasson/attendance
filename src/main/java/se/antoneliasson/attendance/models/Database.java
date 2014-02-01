@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -36,6 +35,8 @@ public class Database {
         log.debug("Initialising tables");
         Statement statement = connection.createStatement();
         statement.executeUpdate(Person.getSchema());
+        statement.executeUpdate(Occasion.getSchema());
+        statement.executeUpdate(Participation.getSchema());
     }
     
     /**
@@ -149,5 +150,72 @@ public class Database {
         }
         assert false;
         return null;
+    }
+    
+    public void setString(String tablename, int id, String field, String value) {
+        String query = String.format("UPDATE %s SET %s=? WHERE id = ?", tablename, field);
+        log.debug("Query: {}", query);
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, value);
+            stmt.setInt(2, id);
+            int rowsChanged = stmt.executeUpdate();
+            assert rowsChanged == 1;
+        } catch (SQLException ex) {
+            log.error(ex);
+        }
+    }
+
+    public List<Occasion> listOccasions() {
+        final String tablename = "occasion";
+        String query = String.format("SELECT id FROM %s ORDER BY date", tablename);
+        List<Occasion> result = new ArrayList<>();
+        
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            ResultSet res = stmt.executeQuery();
+            while (res.next()) {
+                result.add(new Occasion(this, res.getInt("id")));
+            }
+        } catch (SQLException ex) {
+            log.fatal(ex);
+            System.exit(1);
+        }
+        log.debug("Found {} matching occasion(s)", result.size());
+        return result;
+    }
+    
+    public boolean getAttendance(int person, int occasion) {
+        String query = "SELECT 1 FROM participation WHERE person = ? AND occasion = ?";
+        
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, person);
+            stmt.setInt(2, occasion);
+            ResultSet res = stmt.executeQuery();
+            if (res.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            log.fatal(ex);
+            System.exit(1);
+        }
+        return false;
+    }
+    
+    public void setAttendance(int person, int occasion, boolean attends) {
+        String query;
+        if (attends) {
+            query = "INSERT INTO participation (person, occasion) values (?, ?)";
+        } else {
+            query = "DELETE FROM participation WHERE person=? AND occasion=?";
+        }
+        log.debug("Query: {}", query);
+        log.debug("Person={}, occasion={}", person, occasion);
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, person);
+            stmt.setInt(2, occasion);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            log.fatal(ex);
+            System.exit(1);
+        }
     }
 }

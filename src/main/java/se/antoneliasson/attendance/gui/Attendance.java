@@ -1,7 +1,7 @@
 package se.antoneliasson.attendance.gui;
 
 import java.awt.BorderLayout;
-import javax.swing.JButton;
+import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,8 +16,12 @@ public class Attendance extends JFrame {
         
         setLayout(new BorderLayout());
         
+        PersonPanel personPanel = new PersonPanel(db);
+        personPanel.setPreferredSize(new Dimension(200, 0));
+        add(personPanel, BorderLayout.EAST);
+        
         PersonTableModel tableModel = new PersonTableModel(db);
-        PersonTable personTable = new PersonTable(tableModel);
+        PersonTable personTable = new PersonTable(tableModel, personPanel);
         add(personTable);
         
         JPanel filterPanel = new JPanel(new BorderLayout());
@@ -28,8 +32,6 @@ public class Attendance extends JFrame {
         filterField.getDocument().addDocumentListener(filterer);
         filterPanel.add(filterField);
         add(filterPanel, BorderLayout.NORTH);
-        
-        add(new JButton("Placeholder"), BorderLayout.EAST);
         
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         pack();

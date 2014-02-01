@@ -108,7 +108,20 @@ public class Person {
         return db.getString(tablename, id, "payment");
     }
 
-    public String getIdentificationChecked() {
-        return db.getString(tablename, id, "identification_checked");
+    public boolean getIdentificationChecked() {
+        // TODO: investigate the nice side effect that parseBoolean maps null to false
+        return Boolean.parseBoolean(db.getString(tablename, id, "identification_checked"));
+    }
+
+    public void setIdentificationChecked(boolean selected) {
+        db.setString(tablename, id, "identification_checked", Boolean.toString(selected));
+    }
+
+    public boolean getParticipation(Occasion o) {
+        return db.getAttendance(id, o.getId());
+    }
+    
+    public void setParticipation(Occasion o, boolean attends) {
+        db.setAttendance(id, o.getId(), attends);
     }
 }

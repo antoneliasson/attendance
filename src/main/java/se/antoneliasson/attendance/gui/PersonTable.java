@@ -14,12 +14,14 @@ import org.apache.logging.log4j.Logger;
 public class PersonTable extends JPanel implements ListSelectionListener {
     private final Logger log;
     private final PersonTableModel model;
+    private final PersonPanel personPanel; // TODO: you do not belong in this class
     
-    public PersonTable(PersonTableModel tableModel) {
+    public PersonTable(PersonTableModel tableModel, PersonPanel personPanel) {
         super(new GridLayout(1, 0));
         log = LogManager.getLogger();
         log.trace("PersonTable constructor");
         this.model = tableModel;
+        this.personPanel = personPanel;
         
         JTable table = new JTable(tableModel);
         table.setPreferredScrollableViewportSize(new Dimension(800, 200));
@@ -49,12 +51,8 @@ public class PersonTable extends JPanel implements ListSelectionListener {
                 throw new UnsupportedOperationException("Multiple selection currently not supported");
             }
             log.debug("Row {} selected: {}", minIndex, lsm.isSelectedIndex(minIndex));
-            printRow(minIndex);
+            // assume that the rows in the view maps to the same rows in the model
+            personPanel.refresh(model.get(minIndex));
         }
-    }
-    
-    private void printRow(int index) {
-        // assume that the rows in the view maps to the same rows in the model
-        System.out.println(model.get(index));
     }
 }
