@@ -35,7 +35,7 @@ public class Person {
             +"gender STRING, "
             +"membership STRING, "
             +"payment STRING, " // date
-            +"identification_checked STRING, " // date. Maybe. Or a boolean.
+            +"identification_checked STRING, " // boolean :3
             +"PRIMARY KEY(id)"
             +")", tablename);
     }

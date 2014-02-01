@@ -13,7 +13,7 @@ public class PersonTableModel extends AbstractTableModel implements Observer {
 
     private final Database db;
     private final List<Person> persons;
-    private final String[] columnNames = {"Tidsstämpel", "Namn", "Telefonnummer", "E-postadress", "Kön", "Medlemstyp", "Betalningsdatum", "Leg kontrollerat"};
+    private final String[] columnNames = {"Namn", "Telefonnummer", "E-postadress", "Kön", "Medlemstyp", "Betalningsdatum"};
 
     public PersonTableModel(Database db) {
         this.db = db;
@@ -35,7 +35,7 @@ public class PersonTableModel extends AbstractTableModel implements Observer {
 
     @Override
     public int getColumnCount() {
-        return 8; // number of fields in Person
+        return columnNames.length;
     }
 
     @Override
@@ -43,21 +43,17 @@ public class PersonTableModel extends AbstractTableModel implements Observer {
         Person p = persons.get(row);
         switch (column) {
             case 0:
-                return p.getTimestamp();
-            case 1:
                 return p.getName();
-            case 2:
+            case 1:
                 return p.getPhone();
-            case 3:
+            case 2:
                 return p.getEmail();
-            case 4:
+            case 3:
                 return p.getGender();
-            case 5:
+            case 4:
                 return p.getMembership();
-            case 6:
+            case 5:
                 return p.getPayment();
-            case 7:
-                return p.getIdentificationChecked();
             default:
                 assert false;
                 return null;
