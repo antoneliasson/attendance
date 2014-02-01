@@ -31,6 +31,7 @@ public class PersonPanel extends JPanel implements ActionListener {
         personLabel = new JLabel();
         add(personLabel);
         identificationChecked = new JCheckBox("ID checked", false);
+        identificationChecked.setEnabled(false);
         identificationChecked.addActionListener(this);
         add(identificationChecked);
         add(new JLabel()); // poor man's field separator
