@@ -36,11 +36,8 @@ public class PersonTableModelTest {
 
     @Test
     public void testGetValueAt() {
-        int row = 0;
-        int column = 1;
-        Object expResult = "Eva-Rakel Göransson";
-        Object result = instance.getValueAt(row, column);
-        assertEquals(expResult, result);
+        assertEquals("Eva-Rakel Göransson", instance.getValueAt(0, 0));
+        assertEquals("733568365", instance.getValueAt(0, 1));
     }
 
     @Test
