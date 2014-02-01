@@ -4,8 +4,13 @@ import se.antoneliasson.attendance.gui.Attendance;
 import se.antoneliasson.attendance.models.Database;
 
 public class Launcher {
-        public static void main(String[] args) throws ClassNotFoundException {
-        Database db = new Database("example.db");
+
+    public static void main(String[] args) throws ClassNotFoundException {
+        String dbFilename = "example.db";
+        if (args.length == 1) {
+            dbFilename = args[0];
+        }
+        Database db = new Database(dbFilename);
         new Attendance(db);
     }
 }
