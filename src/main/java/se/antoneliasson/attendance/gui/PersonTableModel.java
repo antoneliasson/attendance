@@ -60,10 +60,10 @@ public class PersonTableModel extends AbstractTableModel implements Observer {
         }
     }
 
-//    @Override
-//    public Class getColumnClass(int c) {
-//        return getValueAt(0, c).getClass();
-//    }
+    @Override
+    public Class getColumnClass(int c) {
+        return getValueAt(0, c).getClass();
+    }
     
     @Override
     public String getColumnName(int column) {
