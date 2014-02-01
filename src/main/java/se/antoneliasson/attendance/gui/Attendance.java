@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import se.antoneliasson.attendance.models.Database;
 
@@ -26,7 +25,7 @@ public class Attendance extends JFrame {
         
         JPanel filterPanel = new JPanel(new BorderLayout());
         filterPanel.add(new JLabel("Filter: "), BorderLayout.WEST);
-        JTextField filterField = new JTextField();
+        FilterField filterField = new FilterField();
         Filterer filterer = new Filterer();
         filterer.addObserver(tableModel);
         filterField.getDocument().addDocumentListener(filterer);
