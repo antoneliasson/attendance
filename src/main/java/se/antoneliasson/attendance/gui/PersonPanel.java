@@ -30,7 +30,7 @@ public class PersonPanel extends JPanel implements ActionListener {
         person = null;
         personLabel = new JLabel();
         add(personLabel);
-        identificationChecked = new JCheckBox("ID checked", false);
+        identificationChecked = new JCheckBox("ID checked");
         identificationChecked.setEnabled(false);
         identificationChecked.addActionListener(this);
         add(identificationChecked);
@@ -38,12 +38,13 @@ public class PersonPanel extends JPanel implements ActionListener {
         add(new JLabel("Attendance:"));
         for (int i = 0; i < occasions.size(); i++) {
             Occasion o = occasions.get(i);
-            JCheckBox box = new JCheckBox(o.getDate(), false);
+            JCheckBox box = new JCheckBox(o.getDate());
             box.setEnabled(false);
             box.addActionListener(this);
             add(box);
             boxes.add(box);
         }
+        assert occasions.size() == boxes.size();
     }
 
     public void refresh(Person p) {
