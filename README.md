@@ -14,19 +14,19 @@ Användning (utveckling)
 
 Installera [Apache Maven][]. Klona Attendance' Git-repo. Kör `mvn compile` för
 att bygga projektet. `mvn test` kör de automatiska testerna och kopierar
-exempeldatabasen till `target/test-classes`. Därefter kan `mvn exec:exec`
-användas för att starta programmet. JAR-filer byggs med `mvn package`. Maven
-laddar automatiskt ner alla beroenden som krävs.
+exempeldatabasen från `src/test/resources` till `target/test-classes`. Därefter
+kan `mvn exec:exec` användas för att starta programmet. JAR-filer byggs med `mvn
+package`. Maven laddar automatiskt ner alla beroenden som krävs.
 
 [apache maven]: http://maven.apache.org/
 
 Användning (demo)
 -----------------
 
-Hämta JAR-filen i `dist` och demodatabasen `example.db` i rotkatalogen. Spara
-dem i samma katalog. Kör JAR-filen med Java Runtime, t.ex. genom att
-dubbelklicka på den. En annan databas kan användas genom att ange den som första
-argumentet på kommandoraden, exempelvis så här:
+Hämta JAR-filen i `dist` och demodatabasen `example.db` i
+`src/test/resources`. Spara dem i samma katalog. Kör JAR-filen med Java Runtime,
+t.ex. genom att dubbelklicka på den. En annan databas kan användas genom att
+ange den som första argumentet på kommandoraden, exempelvis så här:
 
     $ java -jar attendance-0.1-SNAPSHOT-jar-with-dependencies.jar nybörjarkurs.db
 
