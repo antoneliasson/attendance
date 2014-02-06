@@ -4,8 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+import se.antoneliasson.attendance.gui.menu.OpenMenu;
 import se.antoneliasson.attendance.models.Database;
 
 public class Attendance extends JFrame {
@@ -14,6 +17,12 @@ public class Attendance extends JFrame {
         super("Attendance");
         
         setLayout(new BorderLayout());
+        
+        JMenuBar menubar = new JMenuBar();
+        setJMenuBar(menubar);
+        JMenu fileMenu = new JMenu("Arkiv");
+        menubar.add(fileMenu);
+        fileMenu.add(new OpenMenu(this));
         
         PersonPanel personPanel = new PersonPanel(db);
         personPanel.setPreferredSize(new Dimension(200, 0));
