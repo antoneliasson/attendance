@@ -14,7 +14,7 @@ import se.antoneliasson.attendance.models.Database;
 public class Attendance extends JFrame {
     
     public Attendance(Database db) {
-        super("Attendance");
+        super("Attendance - " + db.getName());
         
         setLayout(new BorderLayout());
         

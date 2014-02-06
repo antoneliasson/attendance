@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 public class Database {
     private final Logger log;
     private Connection connection;
+    private final String dbName;
 
     public Database(String dbName) {
         log = LogManager.getLogger();
@@ -25,6 +26,7 @@ public class Database {
             log.fatal(ex);
             System.exit(1);
         }
+        this.dbName = dbName;
         String dbURL = "jdbc:sqlite:" + dbName;
         try {
             log.info("Connecting to {}.", dbURL);
@@ -34,6 +36,10 @@ public class Database {
             log.fatal("Failed to open database", e);
             System.exit(1);
         }
+    }
+
+    public String getName() {
+        return dbName;
     }
 
     private void initTables() throws SQLException {
