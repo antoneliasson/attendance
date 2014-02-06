@@ -17,9 +17,14 @@ public class Database {
     private final Logger log;
     private Connection connection;
 
-    public Database(String dbName) throws ClassNotFoundException {
+    public Database(String dbName) {
         log = LogManager.getLogger();
-        Class.forName("org.sqlite.JDBC");
+        try {
+            Class.forName("org.sqlite.JDBC");
+        } catch (ClassNotFoundException ex) {
+            log.fatal(ex);
+            System.exit(1);
+        }
         String dbURL = "jdbc:sqlite:" + dbName;
         try {
             log.info("Connecting to {}.", dbURL);
