@@ -1,6 +1,5 @@
 package se.antoneliasson.attendance.gui;
 
-import java.util.Observable;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -42,21 +41,18 @@ public class PersonTableModelTest {
 
     @Test
     public void testFilterAll() {
-        Observable o = null;
         instance.filter("");
         assertEquals(8, instance.getRowCount());
     }
 
     @Test
     public void testFilterTwo() {
-        Observable o = null;
         instance.filter("h");
         assertEquals(2, instance.getRowCount());
     }
 
     @Test
     public void testFilterNone() {
-        Observable o = null;
         instance.filter("qwerty");
         assertEquals(0, instance.getRowCount());
     }
