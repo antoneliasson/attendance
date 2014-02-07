@@ -8,7 +8,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
-import se.antoneliasson.attendance.controllers.Import;
+import se.antoneliasson.attendance.controllers.Importer;
 import se.antoneliasson.attendance.gui.menu.ImportMenu;
 import se.antoneliasson.attendance.gui.menu.OpenMenu;
 import se.antoneliasson.attendance.models.Database;
@@ -20,7 +20,7 @@ public class Attendance extends JFrame {
         
         setLayout(new BorderLayout());
         
-        Import importer = new Import(db);
+        Importer importer = new Importer(db);
         
         JMenuBar menubar = new JMenuBar();
         setJMenuBar(menubar);

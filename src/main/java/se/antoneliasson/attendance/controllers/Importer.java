@@ -10,11 +10,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import se.antoneliasson.attendance.models.Database;
 
-public class Import {
+public class Importer {
     private final Logger log;
     private final Database db;
     
-    public Import(Database db) {
+    public Importer(Database db) {
         log = LogManager.getLogger();
         this.db = db;
     }

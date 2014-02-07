@@ -13,13 +13,13 @@ import se.antoneliasson.attendance.models.Database;
  * @author anton
  */
 @RunWith(JUnit4.class) public class ImportTest {
-    Import instance;
+    Importer instance;
  
     @Before public void setUp() throws Exception {
         new File("test.db").delete();
         
         Database db = new Database("test.db");
-        instance = new Import(db);
+        instance = new Importer(db);
     }
     
     /**
