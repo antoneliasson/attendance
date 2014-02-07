@@ -10,10 +10,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Database {
+public class Database extends Observable {
     private final Logger log;
     private Connection connection;
     private final String dbName;
@@ -105,6 +106,8 @@ public class Database {
         int id = insert(tablename, query.toString(), values);
 
         log.debug("Inserted new person with id {} into the database", id);
+        setChanged();
+        notifyObservers();
         return id;
     }
     

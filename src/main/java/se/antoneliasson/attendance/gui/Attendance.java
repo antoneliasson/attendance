@@ -29,6 +29,7 @@ public class Attendance extends JFrame {
         add(personPanel, BorderLayout.EAST);
         
         PersonTableModel tableModel = new PersonTableModel(db);
+        db.addObserver(tableModel);
         PersonTable personTable = new PersonTable(tableModel, personPanel);
         add(personTable);
         
