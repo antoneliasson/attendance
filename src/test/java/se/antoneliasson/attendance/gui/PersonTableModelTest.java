@@ -43,21 +43,21 @@ public class PersonTableModelTest {
     @Test
     public void testFilterAll() {
         Observable o = null;
-        instance.update(o, "");
+        instance.filter("");
         assertEquals(8, instance.getRowCount());
     }
 
     @Test
     public void testFilterTwo() {
         Observable o = null;
-        instance.update(o, "h");
+        instance.filter("h");
         assertEquals(2, instance.getRowCount());
     }
 
     @Test
     public void testFilterNone() {
         Observable o = null;
-        instance.update(o, "qwerty");
+        instance.filter("qwerty");
         assertEquals(0, instance.getRowCount());
     }
 }

@@ -2,14 +2,12 @@ package se.antoneliasson.attendance.gui;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 import javax.swing.table.AbstractTableModel;
 import org.apache.logging.log4j.LogManager;
 import se.antoneliasson.attendance.models.Database;
 import se.antoneliasson.attendance.models.Person;
 
-public class PersonTableModel extends AbstractTableModel implements Observer {
+public class PersonTableModel extends AbstractTableModel {
 
     private final Database db;
     private final List<Person> persons;
@@ -22,7 +20,8 @@ public class PersonTableModel extends AbstractTableModel implements Observer {
         filter("");
     }
     
-    private void filter(String filter) {
+    public void filter(String filter) {
+        LogManager.getLogger().debug("Filter changed to '{}'", filter);
         persons.clear();
         persons.addAll(db.find(filter));
         fireTableDataChanged(); // Efficiency? What efficiency?
@@ -68,13 +67,6 @@ public class PersonTableModel extends AbstractTableModel implements Observer {
     @Override
     public String getColumnName(int column) {
         return columnNames[column];
-    }
-
-    @Override
-    public void update(Observable o, Object o1) {
-        String filter = (String)o1;
-        LogManager.getLogger().debug("Filter changed to '{}'", filter);
-        filter(filter);
     }
     
     public Person get(int row) {

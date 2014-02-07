@@ -35,8 +35,7 @@ public class Attendance extends JFrame {
         JPanel filterPanel = new JPanel(new BorderLayout());
         filterPanel.add(new JLabel("Filter: "), BorderLayout.WEST);
         FilterField filterField = new FilterField();
-        Filterer filterer = new Filterer();
-        filterer.addObserver(tableModel);
+        Filterer filterer = new Filterer(tableModel);
         filterField.getDocument().addDocumentListener(filterer);
         filterPanel.add(filterField);
         add(filterPanel, BorderLayout.NORTH);
