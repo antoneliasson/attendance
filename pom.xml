@@ -10,7 +10,6 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.3.2</version>
         <configuration>
@@ -33,7 +32,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <!-- Implicit groupId: org.apache.maven.plugins -->
         <artifactId>maven-assembly-plugin</artifactId>
         <version>2.4</version>
         <configuration>
@@ -43,6 +41,8 @@
           <archive>
             <manifest>
               <mainClass>se.antoneliasson.attendance.Launcher</mainClass>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
             </manifest>
           </archive>
         </configuration>
@@ -55,6 +55,18 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+            </manifest>
+          </archive>
+        </configuration>
       </plugin>
     </plugins>
   </build>
