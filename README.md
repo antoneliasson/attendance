@@ -3,7 +3,8 @@ Attendance
 
 Ett smidigt program för att ta närvaron på föranmälda deltagare under något
 evenemang, t.ex. en danskurs (atten-dance). Anmälningslistor importeras från en
-kommaseparerad fil som exporterats från exempelvis Google Forms.
+kommaseparerad fil som exporterats från exempelvis Google Forms. Se
+[doc/import](doc/Import.md) för närmare dokumentation.
 
 I Attendance kan man kryssa i vilka som är närvarande, notera när deras ID
 kontrollerats (ex. studentlegitimation eller biljett) och under vilka tillfällen
@@ -43,4 +44,6 @@ därefter flyttas till `example.db` som är standarddatabasen om ingen angetts p
 kommandoraden.
 
 Utförlig information om senaste körning sparas i loggfilen `logs/debug.log`.
-Varningar och felmeddelanden skrivs även ut till terminalen under körning.
+Varningar och felmeddelanden skrivs även ut till terminalen under körning. Dessa
+kan vara ganska viktiga, så i nuläget rekommenderas det att köra programmet i en
+terminal.
