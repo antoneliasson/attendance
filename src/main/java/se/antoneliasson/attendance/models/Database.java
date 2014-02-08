@@ -232,4 +232,41 @@ public class Database extends Observable {
             System.exit(1);
         }
     }
+    
+    /**
+     * Finds a person based on their "secondary" ID -- the practically unique timestamp.
+     * @param timestamp
+     * @return 
+     */
+    public Person getPerson(String timestamp) {
+        String query = "SELECT id FROM person WHERE timestamp = ?";
+        List<Person> result = search(query, new String[] {timestamp});
+        assert result.size() < 2;
+        if (result.isEmpty()) {
+            return null;
+        } else {
+            return result.get(0);
+        }
+    }
+    
+    // These operations are really too low level to be exposed:
+    
+    public void beginTransaction() throws SQLException {
+        log.debug("Begin transaction");
+        connection.setAutoCommit(false);
+    }
+    
+    public void rollbackTransaction() throws SQLException {
+        log.debug("Rolling back transaction");
+        connection.rollback();
+        connection.setAutoCommit(true);
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void commitTransaction() throws SQLException {
+        log.debug("Committing transaction");
+        connection.commit();
+        connection.setAutoCommit(true);
+    }
 }

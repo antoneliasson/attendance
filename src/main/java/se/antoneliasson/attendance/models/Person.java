@@ -124,4 +124,8 @@ public class Person {
     public void setParticipation(Occasion o, boolean attends) {
         db.setAttendance(id, o.getId(), attends);
     }
+    
+    public void setPayment(String date) {
+        db.setString(tablename, id, "payment", date);
+    }
 }
