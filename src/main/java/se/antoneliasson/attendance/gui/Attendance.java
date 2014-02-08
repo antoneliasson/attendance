@@ -9,6 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import se.antoneliasson.attendance.controllers.Importer;
+import se.antoneliasson.attendance.gui.menu.AboutMenu;
 import se.antoneliasson.attendance.gui.menu.ImportMenu;
 import se.antoneliasson.attendance.gui.menu.OpenMenu;
 import se.antoneliasson.attendance.models.Database;
@@ -28,6 +29,9 @@ public class Attendance extends JFrame {
         menubar.add(fileMenu);
         fileMenu.add(new OpenMenu(this));
         fileMenu.add(new ImportMenu(this, importer));
+        JMenu helpMenu = new JMenu("Help");
+        menubar.add(helpMenu);
+        helpMenu.add(new AboutMenu(this));
         
         PersonPanel personPanel = new PersonPanel(db);
         personPanel.setPreferredSize(new Dimension(200, 0));
