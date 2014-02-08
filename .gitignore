@@ -1,3 +1,6 @@
 *~
 target/
 logs/
+
+# Ideally, the database created during testing should be stored elsewhere
+test.db
