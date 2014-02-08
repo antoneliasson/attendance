@@ -19,7 +19,7 @@ public class Importer {
         this.db = db;
     }
     
-    public void simpleImport(String filename) {
+    public void csvImport(String filename) {
         log.info("Importing from file \"{}\"", filename);
         try (CSVReader reader = new CSVReader(new FileReader(filename))) {
             String[] line = reader.readNext();

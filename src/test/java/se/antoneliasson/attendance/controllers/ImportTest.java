@@ -27,7 +27,7 @@ import se.antoneliasson.attendance.models.Database;
      */
     @Test public void testSimpleImport() {
         String filename = "testdata.csv";
-        instance.simpleImport(filename);
+        instance.csvImport(filename);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }

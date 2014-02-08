@@ -26,7 +26,7 @@ public class ImportMenu extends JMenuItem implements ActionListener {
         
         if (choice == JFileChooser.APPROVE_OPTION) {
             File f = fileChooser.getSelectedFile();
-            importer.simpleImport(f.getPath());
+            importer.csvImport(f.getPath());
         }
     }
     
