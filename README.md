@@ -36,7 +36,7 @@ Tekniskt
 
 Data sparas kontinuerligt i en SQLite-databas. Det finns ännu inget sätt att
 exportera datan till ett mänskligt läsbart format, men det är en funktion som
-kommer i nästa version.
+kommer i näst-nästa version.
 
 Det enda sättet att importera data just nu är att köra testfallen i Maven. Ett
 av dem läser in data från `testdata.csv` och sparar i `test.db`. Denna kan
