@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Observable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.sqlite.SQLiteConfig;
 
 public class Database extends Observable {
     private final Logger log;
@@ -31,8 +32,10 @@ public class Database extends Observable {
         String dbURL = "jdbc:sqlite:" + dbName;
         Connection c = null;
         log.info("Connecting to {}.", dbURL);
+        SQLiteConfig config = new SQLiteConfig();
+        config.enforceForeignKeys(true);
         try {
-            c = DriverManager.getConnection(dbURL);
+            c = DriverManager.getConnection(dbURL, config.toProperties());
         } catch (SQLException e) {
             log.fatal("Failed to open database", e);
             System.exit(1);
