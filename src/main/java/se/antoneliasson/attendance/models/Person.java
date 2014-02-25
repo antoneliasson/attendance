@@ -1,7 +1,5 @@
 package se.antoneliasson.attendance.models;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public class Person {
@@ -10,18 +8,8 @@ public class Person {
     private final Database db;
     private final int id;
 
-    public Person(Database db, String timestamp, String name, String phone, String email, String gender, String membership, String payment, String identificationChecked) {
-        Map<String, String> fields = new HashMap<>();
-        fields.put("timestamp", timestamp);
-        fields.put("name", name);
-        fields.put("phone", phone);
-        fields.put("email", email);
-        fields.put("gender", gender);
-        fields.put("membership", membership);
-        fields.put("payment", payment);
-        fields.put("identificationChecked", identificationChecked);
-        
-        this.id = db.insertPerson(fields);
+    public Person(Database db, int id) {
+        this.id = id;
         this.db = db;
     }
 
@@ -38,11 +26,6 @@ public class Person {
             +"identification_checked STRING, " // boolean :3
             +"PRIMARY KEY(id)"
             +")", tablename);
-    }
-
-    public Person(Database db, int id) {
-        this.id = id;
-        this.db = db;
     }
 
     @Override
