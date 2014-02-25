@@ -74,18 +74,13 @@ public class Database extends Observable {
     private int insert(String tablename, String query, String[] values) {
         log.debug("Query: {}", query);
         log.debug("Values: {}", Arrays.toString(values));
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+        try (PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             for (int i = 0; i < values.length; i++) {
                 stmt.setString(i+1, values[i]);
             }
             int rowCount = stmt.executeUpdate();
             assert rowCount == 1;
-        } catch (SQLException ex) {
-            log.fatal(ex);
-            System.exit(1);
-        }
-        try (Statement stmt = connection.createStatement()){
-            ResultSet keys = stmt.executeQuery("SELECT last_insert_rowid()");
+            ResultSet keys = stmt.getGeneratedKeys();
             int key = keys.getInt(1);
             log.debug("Primary key of inserted row: {}", key);
             
