@@ -31,6 +31,9 @@ ange den som första argumentet på kommandoraden, exempelvis så här:
 
     $ java -jar attendance-0.1-SNAPSHOT-jar-with-dependencies.jar nybörjarkurs.db
 
+Man kan även starta Attendance utan argument för att öppna exempeldatabasen och
+därefter öppna en annan via Arkiv-menyn.
+
 Tekniskt
 --------
 
@@ -47,3 +50,20 @@ Utförlig information om senaste körning sparas i loggfilen `logs/debug.log`.
 Varningar och felmeddelanden skrivs även ut till terminalen under körning. Dessa
 kan vara ganska viktiga, så i nuläget rekommenderas det att köra programmet i en
 terminal.
+
+Kända problem
+-------------
+
+* Sökningar efter namn som innehåller Å, Ä eller Ö är skriftlägeskänsliga. Det
+gör att t.ex. en sökning efter "åsa" inte kommer att hitta en person med namn
+"Åsa".
+
+Önskelista
+----------
+
+* Visa senast använda databaser i Arkiv-menyn. Kräver att programmet kan lagra
+  konfigurationsfiler någonstans.
+* Öppna senast använd databas då programmet startas.
+* Visa deltagarstatus med färg i huvudfönstret. T.ex. grönt/gult namn för att
+  markera om ID kontrollerats, grönt/rött betalningsdatum för att markera om
+  betalning gjorts.
