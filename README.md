@@ -67,3 +67,5 @@ gör att t.ex. en sökning efter "åsa" inte kommer att hitta en person med namn
 * Visa deltagarstatus med färg i huvudfönstret. T.ex. grönt/gult namn för att
   markera om ID kontrollerats, grönt/rött betalningsdatum för att markera om
   betalning gjorts.
+* Visa i statusfältet totala antalet anmälda, antal avprickade för valt
+  tillfälle, antal som betalat etc.
