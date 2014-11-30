@@ -9,7 +9,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import se.antoneliasson.attendance.controllers.Importer;
+import se.antoneliasson.attendance.controllers.JsonExporter;
 import se.antoneliasson.attendance.gui.menu.AboutMenu;
+import se.antoneliasson.attendance.gui.menu.ExportMenu;
 import se.antoneliasson.attendance.gui.menu.ImportMenu;
 import se.antoneliasson.attendance.gui.menu.OpenMenu;
 import se.antoneliasson.attendance.models.Database;
@@ -22,6 +24,7 @@ public class Attendance extends JFrame {
         setLayout(new BorderLayout());
         
         Importer importer = new Importer(db);
+        JsonExporter exporter = new JsonExporter(db);
         
         JMenuBar menubar = new JMenuBar();
         setJMenuBar(menubar);
@@ -29,6 +32,7 @@ public class Attendance extends JFrame {
         menubar.add(fileMenu);
         fileMenu.add(new OpenMenu(this));
         fileMenu.add(new ImportMenu(this, importer));
+        fileMenu.add(new ExportMenu(this, exporter));
         JMenu helpMenu = new JMenu("Help");
         menubar.add(helpMenu);
         helpMenu.add(new AboutMenu(this));
