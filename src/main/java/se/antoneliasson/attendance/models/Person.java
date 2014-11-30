@@ -1,11 +1,12 @@
 package se.antoneliasson.attendance.models;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Person {
+public class Person implements Serializable {
     private static final String tablename = "person";
     
-    private final Database db;
+    private final transient Database db;
     private final int id;
 
     public Person(Database db, int id) {
