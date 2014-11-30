@@ -69,3 +69,6 @@ gör att t.ex. en sökning efter "åsa" inte kommer att hitta en person med namn
   betalning gjorts.
 * Visa i statusfältet totala antalet anmälda, antal avprickade för valt
   tillfälle, antal som betalat etc.
+* Tidsstämpel-fältet används som nyckel för varje deltagare och förväntas vara
+  unik, men importfunktionen kontrollerar inte detta.
+* Kom ihåg var importerade (csv-) filer fanns sist.
