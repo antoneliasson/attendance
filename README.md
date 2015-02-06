@@ -68,5 +68,13 @@ gör att t.ex. en sökning efter "åsa" inte kommer att hitta en person med namn
 * Visa i statusfältet totala antalet anmälda, antal avprickade för valt
   tillfälle, antal som betalat etc.
 * Tidsstämpel-fältet används som nyckel för varje deltagare och förväntas vara
-  unik, men importfunktionen kontrollerar inte detta.
+  unik, men importfunktionen kontrollerar inte detta. Ger problem när deltagare
+  skrivits in manuellt in anmälningsformuläret (med en påhittad tidsstämpel)
 * Kom ihåg var importerade (csv-) filer fanns sist.
+* Bättre navigation med enbart tangentbordet. Exempel på arbetsflöde:
+  1. Filtrera personer (sökfältet är markerat som standard)
+  2. Navigera till rätt person med piltangenterna
+  3. Enter för att markera en person
+  4. Mellanslag för att markera närvaro för dagens kurstillfälle
+* Funktion för att redigera listan med kurstillfällen.
+* Känn igen kolumner i CSV-importen på deras namn istället för index.
