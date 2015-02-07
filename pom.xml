@@ -4,7 +4,7 @@
   <groupId>se.antoneliasson.attendance</groupId>
   <artifactId>attendance</artifactId>
   <packaging>jar</packaging>
-  <version>0.2-SNAPSHOT</version>
+  <version>0.3.0</version>
   <name>attendance</name>
   <url>http://maven.apache.org</url>
   <build>
