@@ -77,7 +77,7 @@ gör att t.ex. en sökning efter "åsa" inte kommer att hitta en person med namn
   3. Enter för att markera en person
   4. Mellanslag för att markera närvaro för dagens kurstillfälle
 * Funktion för att redigera listan med kurstillfällen.
-* Känn igen kolumner i CSV-importen på deras namn istället för index.
 * Uppdatera andra fält än bara betalning vid CSV-import. Svenska tecken i namn-
   och medlemstyp-fälten gick åt skogen vid import i Windows. Eventuellt hade
   Microsoft Excel med saken att göra.
+* Kolla om databasen är låst när en kurs öppnas. Vägra i så fall.
