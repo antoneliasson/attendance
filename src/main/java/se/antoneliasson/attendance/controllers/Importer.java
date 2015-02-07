@@ -42,16 +42,19 @@ public class Importer {
                         updated++;
                     }
                 }
+                if (confirm(inserted, updated)) {
+                    db.commitTransaction();
+                    log.info("Inserted {} and updated {} record(s) in the database.", inserted, updated);
+                } else {
+                    db.rollbackTransaction();
+                    log.info("Import aborted by user. No data has been changed.");
+                }
             } catch (IOException ioe) {
                 log.error("Failed to read CSV file", ioe);
                 db.rollbackTransaction();
                 return;
-            }
-            if (confirm(inserted, updated)) {
-                log.info("Inserted {} and updated {} record(s) in the database.", inserted, updated);
-                db.commitTransaction();
-            } else {
-                log.info("Import aborted by user. No data has been changed.");
+            } catch (NoSuchElementException nsee) {
+                log.error("Failed to parse CSV file header;", nsee);
                 db.rollbackTransaction();
             }
         } catch (SQLException ex) {
