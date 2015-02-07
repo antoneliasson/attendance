@@ -24,7 +24,7 @@ public class Attendance extends JFrame {
         setLayout(new BorderLayout());
         
         Importer importer = new Importer(db);
-        JsonExporter exporter = new JsonExporter(db);
+        //JsonExporter exporter = new JsonExporter(db);
         
         JMenuBar menubar = new JMenuBar();
         setJMenuBar(menubar);
@@ -32,7 +32,7 @@ public class Attendance extends JFrame {
         menubar.add(fileMenu);
         fileMenu.add(new OpenMenu(this));
         fileMenu.add(new ImportMenu(this, importer));
-        fileMenu.add(new ExportMenu(this, exporter));
+        //fileMenu.add(new ExportMenu(this, exporter));
         JMenu helpMenu = new JMenu("Help");
         menubar.add(helpMenu);
         helpMenu.add(new AboutMenu(this));
