@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 ## Unreleased
 ### Added
 
+## 0.3.1 - 2015-02-07
+### Changed
+- Override the system default character encoding when opening CSV files. Always
+  use UTF-8.
+
 ## 0.3.0 - 2015-02-07
 ### Added
 - Parse the header in CSV files during import and guess which column is which
