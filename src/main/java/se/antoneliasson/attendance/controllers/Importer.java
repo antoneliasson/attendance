@@ -1,19 +1,21 @@
 package se.antoneliasson.attendance.controllers;
 
 import au.com.bytecode.opencsv.CSVReader;
-import java.io.FileReader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import se.antoneliasson.attendance.models.Database;
+import se.antoneliasson.attendance.models.Person;
+
+import javax.swing.*;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
-import javax.swing.JOptionPane;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import se.antoneliasson.attendance.models.Database;
-import se.antoneliasson.attendance.models.Person;
 
 public class Importer {
     private final Logger log;
@@ -31,7 +33,7 @@ public class Importer {
             log.info("Importing from file \"{}\"", filename);
             int inserted = 0, updated = 0;
             db.beginTransaction();
-            try (CSVReader reader = new CSVReader(new FileReader(filename))) {
+            try (CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"))) {
                 String[] line = reader.readNext();
                 log.debug("Parsing header: {}", Arrays.toString(line));
                 parseHeader(line);
