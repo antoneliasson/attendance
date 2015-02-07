@@ -22,12 +22,13 @@ public class AboutDialog {
         final String version = getClass().getPackage().getImplementationVersion();
         final String msg = String.format(
                 "Attendance version %s.\n"
-                        + "Copyright 2014 Anton Eliasson <anton@antoneliasson.se>\n\n"
+                        + "Copyright 2014-2015 Anton Eliasson <anton@antoneliasson.se>\n\n"
                         + "%s\n\n"
                         + "Attendance uses parts from the following software projects, licensed under the Apache License 2.0:\n"
                         + "OpenCSV (http://opencsv.sourceforge.net/)\n"
                         + "Apache Log4j 2 (http://logging.apache.org/log4j)\n"
-                        + "Xerial SQLite JDBC Driver (https://bitbucket.org/xerial/sqlite-jdbc)", version, gpl);
+                        + "Xerial SQLite JDBC Driver (https://bitbucket.org/xerial/sqlite-jdbc)\n"
+                        + "Google Gson (https://code.google.com/p/google-gson/)", version, gpl);
         JOptionPane optionPane = new JOptionPane(msg, JOptionPane.INFORMATION_MESSAGE);
         JDialog dialog = optionPane.createDialog(owner, "About");
         dialog.setVisible(true);
