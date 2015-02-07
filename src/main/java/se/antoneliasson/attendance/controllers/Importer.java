@@ -71,8 +71,8 @@ public class Importer {
         String[] options = {"Save changes", "Undo import"};
         String msg = String.format(
                 "Created %d new person(s).\n"
-                + "Updated %d existing person(s) with new data.\n\n"
-                + "Continue?",
+                        + "Updated %d existing person(s) with new data.\n\n"
+                        + "Continue?",
                 inserted, updated);
         int answer = JOptionPane.showOptionDialog(null, msg, "Review import",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
