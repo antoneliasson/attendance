@@ -80,3 +80,4 @@ gör att t.ex. en sökning efter "åsa" inte kommer att hitta en person med namn
   och medlemstyp-fälten gick åt skogen vid import i Windows. Eventuellt hade
   Microsoft Excel med saken att göra.
 * Kolla om databasen är låst när en kurs öppnas. Vägra i så fall.
+* Spara sökvägar utan sista segmentet (filnamnet) i Config. De senast importerade CSV-filerna raderas rätt ofta och då återställs sökvägen till user.dir. Kataloger raderas inte lika ofta.
