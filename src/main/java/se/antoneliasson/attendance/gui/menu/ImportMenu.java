@@ -7,6 +7,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import se.antoneliasson.attendance.controllers.Importer;
+import se.antoneliasson.attendance.models.Config;
 
 public class ImportMenu extends JMenuItem implements ActionListener {
     private final JFrame parent;
@@ -21,11 +22,14 @@ public class ImportMenu extends JMenuItem implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JFileChooser fileChooser = new JFileChooser();
+        Config cfg = new Config();
+        String cwd = cfg.getLastImportPath();
+        JFileChooser fileChooser = new JFileChooser(cwd);
+
         int choice = fileChooser.showOpenDialog(parent);
-        
         if (choice == JFileChooser.APPROVE_OPTION) {
             File f = fileChooser.getSelectedFile();
+            cfg.setLastImportPath(f.getPath());
             importer.csvImport(f.getPath());
         }
     }
