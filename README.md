@@ -70,7 +70,6 @@ gör att t.ex. en sökning efter "åsa" inte kommer att hitta en person med namn
 * Tidsstämpel-fältet används som nyckel för varje deltagare och förväntas vara
   unik, men importfunktionen kontrollerar inte detta. Ger problem när deltagare
   skrivits in manuellt in anmälningsformuläret (med en påhittad tidsstämpel)
-* Kom ihåg var importerade (csv-) filer fanns sist.
 * Bättre navigation med enbart tangentbordet. Exempel på arbetsflöde:
   1. Filtrera personer (sökfältet är markerat som standard)
   2. Navigera till rätt person med piltangenterna
