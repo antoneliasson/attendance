@@ -7,6 +7,8 @@ All notable changes to this project will be documented in this file.
   selected person, ctrl+space to toggle participation today. "Today" is actually
   the system time today, so ctrl+space can only be used on a course occasion.
 - Focus the search field when Esc is pressed.
+### Changed
+- Updated documentation and change log, also for previous releases.
 
 ## 0.3.1 - 2015-02-07
 ### Changed
@@ -15,11 +17,27 @@ All notable changes to this project will be documented in this file.
 
 ## 0.3.0 - 2015-02-07
 ### Added
-- Parse the header in CSV files during import and guess which column is which
-  based on the header names.
 - Store the paths of the most recently used database and imported CSV file.
   `java.util.preferences` is used for this.
 
-## <=0.2
 ### Changed
-- TODO: To be filled out.
+- Parse the header in CSV files during import and guess which column is which
+  based on the header names.
+
+### Fixed
+- Don't ask the user for confirmation after a failed import. It is automatically
+  rolled back.
+
+## 0.2.0 - 2014-02-09
+### Added
+- GUI controls to open a course database.
+- CSV person data importer. When importing existing persons, only update the
+  payment field on the existing one instead of adding a duplicate.
+- Pretty About dialog in the Help menu.
+
+### Changed
+- Figured out which license to use.
+
+## 0.1.0 - 2014-02-02
+### Changed
+- Initial release
