@@ -24,6 +24,7 @@ public class FilterField extends JTextField {
     class CancelAction extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent ev) {
+            requestFocusInWindow();
             setText("");
         }
     }
