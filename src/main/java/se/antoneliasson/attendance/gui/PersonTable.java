@@ -2,10 +2,7 @@ package se.antoneliasson.attendance.gui;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
+import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
@@ -32,6 +29,10 @@ public class PersonTable extends JPanel implements ListSelectionListener, TableM
         table.setFillsViewportHeight(true);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.getSelectionModel().addListSelectionListener(this);
+
+        // Disable JTable's binding for ctrl+space. InputMap.remove is no good.
+        InputMap im = table.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        im.put(KeyStroke.getKeyStroke("ctrl pressed SPACE"), "none");
         
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane);
