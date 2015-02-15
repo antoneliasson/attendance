@@ -70,11 +70,6 @@ gör att t.ex. en sökning efter "åsa" inte kommer att hitta en person med namn
 * Tidsstämpel-fältet används som nyckel för varje deltagare och förväntas vara
   unik, men importfunktionen kontrollerar inte detta. Ger problem när deltagare
   skrivits in manuellt in anmälningsformuläret (med en påhittad tidsstämpel)
-* Bättre navigation med enbart tangentbordet. Exempel på arbetsflöde:
-  1. Filtrera personer (sökfältet är markerat som standard)
-  2. Navigera till rätt person med piltangenterna
-  3. Enter för att markera en person
-  4. Mellanslag för att markera närvaro för dagens kurstillfälle
 * Funktion för att redigera listan med kurstillfällen.
 * Uppdatera andra fält än bara betalning vid CSV-import. Svenska tecken i namn-
   och medlemstyp-fälten gick åt skogen vid import i Windows. Eventuellt hade

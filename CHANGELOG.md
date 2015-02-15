@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 ### Added
+- Enable some keyboard navigation. Ctrl+I to toggle *identification checked* for
+  selected person, ctrl+space to toggle participation today. "Today" is actually
+  the system time today, so ctrl+space can only be used on a course occasion.
+- Focus the search field when Esc is pressed.
 
 ## 0.3.1 - 2015-02-07
 ### Changed
