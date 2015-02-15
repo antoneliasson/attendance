@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
+### Changed
+
+## 0.4.0 - 2015-02-15
 ### Added
 - Enable some keyboard navigation. Ctrl+I to toggle *identification checked* for
   selected person, ctrl+space to toggle participation today. "Today" is actually
