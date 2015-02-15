@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
   selected person, ctrl+space to toggle participation today. "Today" is actually
   the system time today, so ctrl+space can only be used on a course occasion.
 - Focus the search field when Esc is pressed.
+
 ### Changed
 - Updated documentation and change log, also for previous releases.
 
